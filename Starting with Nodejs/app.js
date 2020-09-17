@@ -11,6 +11,7 @@ SOME CORE MODULES
 
 //importing http global files here 
 const http=require('http');
+//file system core module
 const fs=require('fs');
 //for core module we dont use ./
 //for local we use ./ eg ./http
@@ -35,7 +36,20 @@ const server=http.createServer((req,res) => //creating server here
 
   if(url==='/message' && method ==='POST')
   {
-   fs.writeFileSync('message.txt','DUMMY');
+    const body =[];
+    //listening a data event
+   req.on('data',(chunk) => {
+      console.log(chunk);
+      body.push(chunk);
+   }); 
+   req.on('end',() =>
+   {
+     //Buffer is a global obj created by nodejs
+     const parsedbody =Buffer.concat(body).toString();
+     const message =parsedbody.split('=')[1];
+     fs.writeFileSync('message.txt',message);
+   })
+  
    res.statusCode=302;
    res.setHeader('Location','/');
    return res.end();

@@ -42,17 +42,20 @@ const server=http.createServer((req,res) => //creating server here
       console.log(chunk);
       body.push(chunk);
    }); 
-   req.on('end',() =>
+   return req.on('end',() =>
    {
      //Buffer is a global obj created by nodejs
      const parsedbody =Buffer.concat(body).toString();
      const message =parsedbody.split('=')[1];
-     fs.writeFileSync('message.txt',message);
-   })
-  
-   res.statusCode=302;
-   res.setHeader('Location','/');
-   return res.end();
+     //sync stand for syncronous
+     //sync here will block execution untill message file is not created which is not good for large file as it will take a lot of time.
+     //fs.writeFileSync('message.txt',message);
+      fs.writeFile('message.txt',message,(err) => {
+      res.statusCode=302;
+      res.setHeader('Location','/');
+      return res.end();
+     });
+   });
   }
 
   //sending response
@@ -61,7 +64,7 @@ const server=http.createServer((req,res) => //creating server here
   //to write some data in response
   res.write('<html>');
   res.write('<head><title>My first Page</title></head>');
-  res.write('<body><h1>hello</h1></body>');
+  res.write('<body><h1>Hello Welcome</h1></body>');
   res.write('</html>');
   res.end();
 

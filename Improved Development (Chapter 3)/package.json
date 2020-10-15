@@ -1,0 +1,13 @@
+{
+  "name": "nodejs-guide",
+  "version": "1.0.0",
+  "description": "Complete Nodejs Guide",
+  "main": "(app.js)",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "author": "Abhishek Joshi",
+  "license": "ISC"
+}

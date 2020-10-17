@@ -12,22 +12,35 @@ const app=express();
     // This allows you to split your code into multiple blocks or pieces instead of having one huge function
 
 // ̣middleware  
-app.use((req,res,next) => {
+
+// app.use((req,res,next) => {
     
-    console.log('In The Middleware');
+//     console.log('In The Middleware');
     
-    //Allows then req to continue to the next middleware in line
+//     //Allows then req to continue to the next middleware in line
+//     next();
+// });
+
+//fitering out certain request through ('/')
+app.use('/',(req,res,next) => {
+    
+    console.log('This always RUNS');
     next();
 });
 
-app.use((req,res,next) => {
+app.use('/add-product',(req,res,next) => {
     
     console.log('In The secound Middleware');
-    res.send('<h1>Hello From Express.js!</h1>')
+    res.send('<h1>Product "ADDED"!</h1>')
     
 });
 
-
+app.use('/',(req,res,next) => {
+    
+    console.log('In The third Middleware');
+    res.send('<h1>Hello From Express.js!</h1>')
+    
+});
 
 // const server=http.createServer(app); 
 // server.listen(5000);

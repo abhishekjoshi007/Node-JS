@@ -1,5 +1,7 @@
 const express=require('express')
 
+const bodyparser=require('body-parser');
+
 //creating expess application
 //app is also a request handler
 const app=express();
@@ -21,6 +23,9 @@ const app=express();
 //     next();
 // });
 
+//using body parser it register a middleware (urlencoded) and next is by default called.
+app.use(bodyparser.urlencoded({extended:false}));
+
 //fitering out certain request through ('/')
 app.use('/',(req,res,next) => {
     
@@ -31,8 +36,15 @@ app.use('/',(req,res,next) => {
 app.use('/add-product',(req,res,next) => {
     
     console.log('In The secound Middleware');
-    res.send('<h1>Product "ADDED"!</h1>')
+    res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>')
     
+});
+
+app.use('/product',(req,res,next) => {
+    
+    console.log(req.body);
+    //for easy redirecting
+    res.redirect('/');
 });
 
 app.use('/',(req,res,next) => {

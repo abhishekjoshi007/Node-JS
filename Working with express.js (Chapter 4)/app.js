@@ -8,6 +8,8 @@ const adminRoutes=require('./Routes/admin')
 //importing routes (shop.js) 
 const shopRoutes=require('./Routes/shop')
 
+const path=require('path');
+
 //creating expess application
 //app is also a request handler
 const app=express();
@@ -46,7 +48,7 @@ app.use(shopRoutes);
 app.use((req,res,next) =>
 {
 
-    res.status(404).send('<h1>Page Not Found</h1>');
+    res.status(404).sendFile(path.join(__dirname,'views','404.html'));
 });
 
 // app.use('/',(req,res,next) => {

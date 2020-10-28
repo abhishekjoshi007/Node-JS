@@ -2,6 +2,12 @@ const express=require('express')
 
 const bodyparser=require('body-parser');
 
+//importing routes (admin.js) 
+const adminRoutes=require('./Routes/admin')
+
+//importing routes (shop.js) 
+const shopRoutes=require('./Routes/shop')
+
 //creating expess application
 //app is also a request handler
 const app=express();
@@ -13,6 +19,7 @@ const app=express();
 
     // This allows you to split your code into multiple blocks or pieces instead of having one huge function
 
+
 // ̣middleware  
 
 // app.use((req,res,next) => {
@@ -23,36 +30,26 @@ const app=express();
 //     next();
 // });
 
-//using body parser it register a middleware (urlencoded) and next is by default called.
+//using body parser it register a middleware which is used to parsed the incoming request bodies
+// (urlencoded) and next is by default called.
+//It does body parsering and using package bodyparser.Using for (console.log(req.body);)
 app.use(bodyparser.urlencoded({extended:false}));
 
 //fitering out certain request through ('/')
-app.use('/',(req,res,next) => {
-    
-    console.log('This always RUNS');
-    next();
-});
+//here app.use fire for both post and get request
+//For particular firing use app.get or app.post 
 
-app.use('/add-product',(req,res,next) => {
-    
-    console.log('In The secound Middleware');
-    res.send('<form action="/product" method="POST"><input type="text" name="title"><button type="submit">Add Product</button></form>')
-    
-});
+app.use(adminRoutes);
+app.use(shopRoutes);
 
-app.use('/product',(req,res,next) => {
-    
-    console.log(req.body);
-    //for easy redirecting
-    res.redirect('/');
-});
 
-app.use('/',(req,res,next) => {
+// app.use('/',(req,res,next) => {
     
-    console.log('In The third Middleware');
-    res.send('<h1>Hello From Express.js!</h1>')
-    
-});
+//     console.log('This always RUNS');
+//     next();
+// });
+
+
 
 // const server=http.createServer(app); 
 // server.listen(5000);

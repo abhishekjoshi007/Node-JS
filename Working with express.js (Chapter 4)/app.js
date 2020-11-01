@@ -37,6 +37,12 @@ const app=express();
 //It does body parsering and using package bodyparser.Using for (console.log(req.body);)
 app.use(bodyparser.urlencoded({extended:false}));
 
+//we need to serve file statically like (css files) simply means not handled by express js router
+//or other middlewarebut instead directly forwarded to the system. 
+app.use(express.static(path.join(__dirname,'public')));
+//app.use(express.static(path.join(__dirname,'publicview')));
+
+
 //fitering out certain request through ('/')
 //here app.use fire for both post and get request
 //For particular firing use app.get or app.post 

@@ -1,0 +1,13 @@
+3 most popular template engine(putting dynamic content into our html pages, we would use something called templating engines.)
+
+1- Ejs
+<p><%= name %></p>
+uses normal HTML and plain js in your template.
+
+2- Pug (jade)
+p # {name}
+use minimal html and custom template language.
+
+3- Handlebars 
+<p>{{name}} </p>
+uses normal template and custom template language.

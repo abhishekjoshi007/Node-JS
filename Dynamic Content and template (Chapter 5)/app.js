@@ -5,6 +5,11 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
+//telling experess that i am registering template engine pug
+app.set('view engine', 'pug');
+//view  allows us to tell express where to find these dynamic views.
+app.set('views','views')
+
 const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 

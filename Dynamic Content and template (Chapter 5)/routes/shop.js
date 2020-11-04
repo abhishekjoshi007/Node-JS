@@ -12,7 +12,13 @@ router.get('/', (req, res, next) => {
   // console.log('shop.js',adminData.products);
   // res.sendFile(path.join(rootDir, 'views', 'shop.html'));
 
-  res.render('shop');
+  //We get our admin data with the products,so let's actually take these products out of admin 
+  //data products and now we want to pass that into our template
+  const product=adminData.products;
+
+  //injecting data into our template so that we can use it in this template file and somehow output it there.
+  //check second argument in res.render
+  res.render('shop',{prods: product, title: 'Shop'});
 });
 
 module.exports = router;

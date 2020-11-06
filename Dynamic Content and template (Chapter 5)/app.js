@@ -6,7 +6,7 @@ const expressHbs=require('express-handlebars');
 const app = express();
 
 //registering new template engine (Hbs)
-app.engine('hbs',expressHbs());
+app.engine('hbs',expressHbs({layoutsDir:'views/layouts/' , defaultLayout:'main-layout', extname:'hbs'}));
 
 //telling experess that i am registering template engine pug
 app.set('view engine', 'hbs');

@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
 
   //injecting data into our template so that we can use it in this template file and somehow output it there.
   //check second argument in res.render
-  res.render('shop',{prods: product, title: 'Shop'});
+  res.render('shop',{prods: product, pageTitle: 'Shop',path:'/'});
 });
 
 module.exports = router;

@@ -2,22 +2,29 @@ const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const expressHbs=require('express-handlebars');
+//const expressHbs=require('express-handlebars');
 const app = express();
 
 //registering new template engine (Hbs)
-app.engine('hbs',expressHbs({layoutsDir:'views/layouts/' , defaultLayout:'main-layout', extname:'hbs'}));
+//app.engine('hbs',expressHbs({layoutsDir:'views/layouts/' , defaultLayout:'main-layout', extname:'hbs'}));
+
+// //telling experess that i am registering template engine pug
+// app.set('view engine', 'hbs');
+// //view  allows us to tell express where to find these dynamic views.
+// app.set('views','views')
+
+
+// telling experess that i am registering template engine pug
+// app.set('view engine', 'pug');
+// view  allows us to tell express where to find these dynamic views.
+// app.set('views','views')
 
 //telling experess that i am registering template engine pug
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 //view  allows us to tell express where to find these dynamic views.
 app.set('views','views')
 
 
-//telling experess that i am registering template engine pug
-// app.set('view engine', 'pug');
-//view  allows us to tell express where to find these dynamic views.
-// app.set('views','views')
 
 const adminData = require('./routes/admin');
 const shopRoutes = require('./routes/shop');

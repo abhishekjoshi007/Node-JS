@@ -7,11 +7,13 @@ const requesthandler=(req,res) =>
   //parsing url
   const url=req.url;
   const method=req.method;
+
   if(url ==='/abc')
   {
     res.write('<html>');
     res.write('<head><title>Enter Message</title></head>');
     res.write('<body><form action="/message" method="POST"><input type="text" name="message"><button type="submit">Send</button</form></body>');
+    //action contain a url which is basically the url this request will generate automatically should be sent to
     res.write('</html>');
     return res.end(); //it will come out of the function
   }
@@ -21,7 +23,8 @@ const requesthandler=(req,res) =>
     const body =[];
 
     //getting req data here 
-    //on allow us to listen a data event
+    //"on" allow us to listen a data event
+    
     req.on('data',(chunk) => {
       console.log(chunk);
       body.push(chunk);

@@ -9,12 +9,33 @@ SOME CORE MODULES
 5-os
 */
 
+/*
+For using npm script
+Type npm init
+=>project name
+
+=>version
+
+=>description
+
+=>entry point
+
+=>author
+
+This will create a json file
+
+In json file go for script. In script use start (special keyword).Start will run our node server ("script":"node app.js").
+=>In cmd use "npm start"
+
+for other keywords other then start
+=>in cmd use "npm run start-server"
+*/
+
 //importing http global files here 
 const http=require('http');
 
 //importing modeule (requesthandler from routes)
 const routes= require('./routes'); 
-
 //for core module we dont use ./
 //for local we use ./ eg ./http
 

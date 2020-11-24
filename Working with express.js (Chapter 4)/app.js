@@ -11,7 +11,7 @@ const shopRoutes=require('./Routes/shop')
 const path=require('path');
 
 //creating expess application
-//app is also a request handler
+//app is also a valid request handler
 const app=express();
 
     // Expressjs is all about middleware.Middleware means that an incoming request is automatically 
@@ -30,6 +30,10 @@ const app=express();
     
 //     //Allows then req to continue to the next middleware in line
 //     next();
+       
+       //for sending res
+       //res.send('html here');
+
 // });
 
 //using body parser it register a middleware which is used to parsed the incoming request bodies
@@ -57,6 +61,8 @@ app.use((req,res,next) =>
     res.status(404).sendFile(path.join(__dirname,'views','404.html'));
 });
 
+//app.use is a express defined method. which add a middleware
+//which has an array of request.
 // app.use('/',(req,res,next) => {
     
 //     console.log('This always RUNS');
@@ -65,6 +71,7 @@ app.use((req,res,next) =>
 
 // const server=http.createServer(app); 
 // server.listen(5000);
+
 //or use
 
 app.listen(5000);

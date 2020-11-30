@@ -1,9 +1,10 @@
 const express=require('express');
 
 //core module no need to install
+//for serving html file 
 const path=require('path')
 
-//express.Router() is a function that we use.Its a mini express here
+//express.Router() is a function that we use.Its a mini express app here
 const router=express.Router();
 
 //replacing app with router

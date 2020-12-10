@@ -1,4 +1,5 @@
-const products = [];
+//importing class
+const Product=require('../models/product')
 
 exports.getAddProduct = (req, res, next) => {
     res.render('add-product', {
@@ -10,12 +11,17 @@ exports.getAddProduct = (req, res, next) => {
     });
   };
 
-  exports.putAddProduct=(req, res, next) => {
-    products.push({ title: req.body.title });
+  exports.putAddProduct = (req, res, next) => {
+    //model class will call
+    const product=new Product(req.body.title);
+    // save function will be called in model
+    product.save();
     res.redirect('/');
   };
 
   exports.getProducts=(req, res, next) => {
+   //model file is called
+    const products=Product.fetchAll();
     
     res.render('shop', {
       prods: products,

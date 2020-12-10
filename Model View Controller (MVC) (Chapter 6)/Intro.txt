@@ -27,5 +27,6 @@ to your views for example.
 So the controller is the middleman, it contains the in-between logic.
 Now in case you're also wondering how routes fit into this picture,
 well routes are basically the things which define upon which path for which http method which controller
-code should execute and as I just said,the controller is then the thing defining with which model to work and which view to render.
+code should execute and as I just said,the controller is then the thing defining with which model to work
+ and which view to render.
 

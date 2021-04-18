@@ -1,3 +1,19 @@
+/*
+Now the web works like this, we get got a user, a client,
+maybe you sitting in front of your browser, visiting a webpage or already being on a webpage and submitting
+a form,so you're interacting with webpages.Let's say you are visiting it,so you're entering some url into your browser
+and what happens behind the scenes is actually that the browser reaches out to some domain name servers
+to look that domain up because this domain is not really the address of your server,
+it's basically an encoded human readable version of that address you could say, your server itself has just an
+IP address but this is just some technical thing behind the scenes,
+in the end you enter this url and it will lead to some server. You therefore or the browser therefore
+sends a request to that server with that given IP address I mentioned, so the IP address belonging to that domain.
+Now thus far that's all interesting but now we reach the part where nodejs comes into play, where your
+nodejs code matters.You write the code that runs on that computer in the Internet which has that IP address,
+you write the code that spins up that server which is able to handle the incoming request and do something
+with it.
+*/
+
 //creating a Server through Nodejs
 
 /*

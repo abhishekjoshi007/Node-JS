@@ -5,10 +5,12 @@
 // var age='22';
 // var hobbies=true;
 
+//with let we can plan to change the values in future
 let name='Abhishek';
 let age='22'; 
 let hobbies=true;
 
+//with const we never plan to change the values
 
 //function
 //Arrow function (another way of defining a Function)
@@ -20,6 +22,7 @@ const first= (username,userage,userhobbies) => {
                );
 };
 
+console.log(first(name,age,hobbies));
 
 //couple of shorter syntax
 //if the arrow function has only one stmt
@@ -57,7 +60,7 @@ const person={
 //  {
 //         console.log('Hi, I am ' + this.name);
 //  }
-}
+};
 console.log(person);
 
 //to access function
@@ -65,8 +68,10 @@ person.greet();
 
 
 /*Arrays and Arrays Methods */
+
 let hobbies2=['Sports','Cooking']
 
+//for printing all elements of array
 // for(let hobby of hobbies2)
 // console.log(hobby);
 

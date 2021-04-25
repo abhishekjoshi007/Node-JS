@@ -32,16 +32,17 @@ const http=require('http');
 const routes= require('./routes'); 
 
 //for core module we dont use ./
-//for local we use ./ eg ./http
+//for local files we use ./ eg ./http
 
-//using functionality from hhtp
+//using functionality(methods) from hhtp module
 const server=http.createServer(routes); //creating server here
   //console.log(req);
   //console.log(req.url, req.method ,req.headers) //few imp fields (handling request)
   //process.exit(); to exit the above process
   
 
-
+/*
+ */ 
 
 
 server.listen(3000);

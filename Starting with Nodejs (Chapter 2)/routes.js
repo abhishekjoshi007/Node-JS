@@ -8,7 +8,7 @@ const requesthandler=(req,res) =>
   const url=req.url;
   const method=req.method;
 
-  if(url ==='/abc')
+  if(url ==='/')
   {
     res.write('<html>');
     res.write('<head><title>Enter Message</title></head>');
@@ -33,6 +33,7 @@ const requesthandler=(req,res) =>
    return req.on('end',() =>
    {
      //Buffer is a global obj created by nodejs
+     //we convert the incoming text to string with (tostring) utility method
      const parsedbody =Buffer.concat(body).toString();
 
      //we split it with[1] so we get the message only not a buffer.
@@ -52,9 +53,10 @@ const requesthandler=(req,res) =>
   }
 
   //sending response
+  //setting value of header
   res.setHeader('Content-Type','text/html');
   
-  //to write some data in response
+  //we use "res.write" to write some data in response
   res.write('<html>');
   res.write('<head><title>My first Page</title></head>');
   res.write('<body><h1>Hello Welcome</h1></body>');
@@ -79,7 +81,6 @@ http.createServer(function(req,res)
 */
 
 //Exporting module i.e requesthandler
-
 module.exports=requesthandler;
 
 //Exporting as an obj

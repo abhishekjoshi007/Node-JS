@@ -10,7 +10,7 @@ const shopRoutes=require('./Routes/shop')
 
 const path=require('path');
 
-//creating expess application
+//creating expess application and stor it in const
 //app is also a valid request handler
 const app=express();
 

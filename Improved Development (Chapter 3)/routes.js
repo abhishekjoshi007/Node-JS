@@ -33,7 +33,7 @@ const requesthandler=(req,res) =>
      const parsedbody =Buffer.concat(body).toString();
 
      //we split it with[1] so we get the message only not a buffer.
-     const message =parsedbody.split('=')[1];
+     const message =parsedbody.split('=')[0];
     
      //sync stand for syncronous
      //sync here will block execution untill message file is not created which is not good for large file as it will take a lot of time.

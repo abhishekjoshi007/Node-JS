@@ -34,7 +34,7 @@ const app=express();
     
 //     console.log('In The Middleware');
     
-//     //Allows then req to continue to the next middleware in line
+//     //Allows the req to continue to the next middleware in line
 //     next();
        
        //for sending res

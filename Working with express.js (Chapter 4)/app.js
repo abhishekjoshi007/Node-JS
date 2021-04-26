@@ -24,6 +24,12 @@ const app=express();
 
 // ̣middleware  
 
+
+//use is a method define by the express framework. Use allows us to add a new middleware function, now the use method 
+// is pretty flexible,it accepts an array of so-called request handlers here and it has some other use cases too.
+// Now one easy way of using it is that you simply pass a function to it and this function here, this function
+// you pass to app use will be executed for every incoming request and this function will receive three arguments,
+
 // app.use((req,res,next) => {
     
 //     console.log('In The Middleware');

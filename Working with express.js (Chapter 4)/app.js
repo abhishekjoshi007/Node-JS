@@ -8,6 +8,7 @@ const adminRoutes=require('./Routes/admin')
 //importing routes (shop.js) 
 const shopRoutes=require('./Routes/shop')
 
+//require path for serving HTML files
 const path=require('path');
 
 //creating expess application and storing it in const

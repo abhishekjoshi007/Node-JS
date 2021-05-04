@@ -12,6 +12,9 @@ const shoproutes=require('./routes/shop');
 
 const app=express();
 
+app.use(bodyparser.urlencoded({extended :false}));
+app.use(express.static(path.join(__dirname,'public')));
+
 app.use(adminroutes);
 app.use(shoproutes);
 

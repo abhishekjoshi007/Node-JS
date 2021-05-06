@@ -13,6 +13,7 @@ const usern=require('./routes/user');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public')));
 
+//For acessing admin data routes only
 app.use(admindata.routes);
 app.use(usern);
 

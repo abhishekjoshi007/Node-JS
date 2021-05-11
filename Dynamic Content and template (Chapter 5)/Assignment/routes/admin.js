@@ -10,6 +10,7 @@ router.get('/', (req,res,next )=> {
     res.render('admin',{pageTitle : 'Add User'});
 });
 
+//Imp /add-user shoul match th action
 router.post('/add-user',(req,res,next )=> {
     un.push({name: req.body.username});
     res.redirect('/user')

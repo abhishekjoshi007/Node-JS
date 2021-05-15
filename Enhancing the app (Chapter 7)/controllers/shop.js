@@ -41,6 +41,18 @@ exports.getCart = (req, res, next) => {
   });
 };
 
+//Order page
+exports.getorders = (req, res, next) => {
+  res.render('shop/orders', {
+    prods: products,
+    pageTitle: 'Orders',
+    path: '/orders',
+    hasProducts: products.length > 0,
+    activeShop: true,
+    productCSS: true
+  });
+};
+
 //Checkout page
 exports.getCheckout = (req, res, next) => {
   Product.fetchAll(products => {

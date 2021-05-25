@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { get } = require('https');
 const path = require('path');
 
 const p = path.join(
@@ -39,4 +40,16 @@ module.exports = class Product {
   static fetchAll(cb) {
     getProductsFromFile(cb);
   }
+
+  static findbyid(id,cb)
+  {
+    getProductsFromFile(products => {
+      //finding product as we are reading complete file coz we are not using db
+      //p.id is a id of product we are currently looking at
+      const product= products.find(p => p.id === id);
+      cb(product);
+    })
+  }
+
+
 };

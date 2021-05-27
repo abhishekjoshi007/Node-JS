@@ -12,12 +12,18 @@ exports.getProducts = (req, res, next) => {
 
 //for single product detail 
 exports.getProduct = (req, res, next) => {
+  //dynamic route name should be same
   const prodId=req.params.productid;
   //console.log(prodId);
-  Product.findbyid(prodId , products => {
-    console.log(products);
+  Product.findbyid(prodId , product => {
+    //console.log(products);
+    res.render('shop/product-detail',{
+      products :product,
+      pageTitle:product.title,
+      path:'/products'
+    });
   }); 
-  res.redirect('/');
+  
 };
 
 

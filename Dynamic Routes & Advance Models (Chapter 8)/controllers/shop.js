@@ -18,7 +18,7 @@ exports.getProduct = (req, res, next) => {
   Product.findbyid(prodId , product => {
     //console.log(products);
     res.render('shop/product-detail',{
-      products :product,
+      product :product,
       pageTitle:product.title,
       path:'/products'
     });
@@ -42,6 +42,14 @@ exports.getCart = (req, res, next) => {
     path: '/cart',
     pageTitle: 'Your Cart'
   });
+};
+
+exports.postCart = (req, res, next) => {
+  
+  //here name is used from the input filed
+  const prodId= req.body.productid;
+  console.log(prodId);
+  res.redirect('/cart');
 };
 
 exports.getOrders = (req, res, next) => {

@@ -28,9 +28,11 @@
                                 </div>
                                 <div class="card__actions">
                                     <a href="/products/<%= product.id %>" class="btn">Details</a>
-                                    <form action="/add-to-cart" method="POST">
-                                        <button class="btn">Add to Cart</button>
-                                    </form>
+                                   
+                                    <!--Include file in for loop or in any loop doesn't work-->
+                                    <!--you can pass it to the function-->
+                                    <%- include('../includes/add-to-cart.ejs',{product:product} )%>;
+                                        
                                 </div>
                             </article>
                             <% } %>

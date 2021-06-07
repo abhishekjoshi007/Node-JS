@@ -29,7 +29,7 @@ exports.getEditProduct = (req, res, next) => {
     return res.redirect('/');
   }
 
-  const prodId= req.params.productId;
+  const prodId= req.params.productid;
 
   Product.findbyid(prodId, product => {
 
@@ -48,6 +48,11 @@ exports.getEditProduct = (req, res, next) => {
   })
   
 };
+
+//we want to construct a new product and replace the existing one
+exports.postEditPorduct=(req,res,next ={
+
+});
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {

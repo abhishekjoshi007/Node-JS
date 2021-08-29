@@ -19,6 +19,7 @@ exports.getProduct = (req, res, next) => {
   Product.findbyid(prodId , product => {
     //console.log(products);
     res.render('shop/product-detail',{
+      //here left side product is the key and right side product is the product that we are eextracting.
       product :product,
       pageTitle:product.title,
       path:'/products'

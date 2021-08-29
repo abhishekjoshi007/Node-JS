@@ -21,6 +21,7 @@ exports.getAddProduct = (req, res, next) => {
 
   exports.getProducts=(req, res, next) => {
    //model file is called
+   //here prods is the key which will help in iterating loop in shop view.
     Product.fetchAll( (products) => {
       res.render('shop', {
         prods: products,

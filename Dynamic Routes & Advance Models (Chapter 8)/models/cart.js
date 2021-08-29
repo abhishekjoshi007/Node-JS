@@ -9,6 +9,7 @@ const p = path.join(
     'cart.json'
   );
 
+
 module.exports=class Cart{
     static addProduct(id , productPrice ) 
     {
@@ -48,6 +49,17 @@ module.exports=class Cart{
                 //replacing cart by present product
                 cart.products=[...cart.products,updatedProduct]
             }
+
+            // Because for this lecture, the first product he adds is new. So the QTY field would be set during the first iteration of the IF Statement, correct? 
+            // So that's why the QTY updates the second time he adds the product.
+
+            // Bingo. It goes like this:
+            // 1. Does the product we are adding already exist in our cart?
+            // 2. If no, create an object with an ID set to the product's ID and a quantity set to 1.
+            // 3. If yes, increment the existing object's quantity by 1.
+            
+            // I think what most students get confused by is the fact that we're creating a new object instead of using the instance of the product model.
+
             //adding + to convert string to number
             cart.totalPrice= cart.totalPrice + +productPrice;
             

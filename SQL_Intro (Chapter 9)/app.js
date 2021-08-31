@@ -14,6 +14,7 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+//excute help in execute query
 db.execute('SELECT * FROM products')
   .then(result => {
     console.log(result[0], result[1]);

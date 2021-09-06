@@ -14,13 +14,20 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId, product => {
+  Product.findById(prodId)
+  .then(([product]) => {
+    //we have used product:product[0] 
+    //and the reason is that product still is an array, an array with one element only but still an array
+    //but the view simply expects one single object, not an array with one object.The solution is to simply pass the first element in that array
+    
     res.render('shop/product-detail', {
-      product: product,
+      product: product[0],
       pageTitle: product.title,
       path: '/products'
     });
-  });
+  })
+  .catch(err => console.log(err))
+  
 };
 
 exports.getIndex = (req, res, next) => {

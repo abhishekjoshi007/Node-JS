@@ -6,3 +6,13 @@ const sequelize = new Sequelize('node-complete', 'root', 'nodecomplete', {
 });
 
 module.exports = sequelize;
+
+//with SQL
+// const mysql=require('mysql2');
+// const pool= mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     database: 'node_scheme',
+//     password: 'QWERasdf!12345'
+// });
+// module.exports= pool.promise();

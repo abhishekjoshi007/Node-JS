@@ -13,7 +13,7 @@ const Product = sequelize.define('product' , {
  },
  title: Sequelize.STRING,
  price: {
-  type: sequelize.DOUBLE,
+  type: Sequelize.DOUBLE,
   allowNull: false
  },
 
@@ -30,4 +30,4 @@ const Product = sequelize.define('product' , {
  }
 });
 
-module.exports = Products;
+module.exports = Product;

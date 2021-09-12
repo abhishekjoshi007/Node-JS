@@ -1,6 +1,10 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('node-complete', 'root', 'nodecomplete', {
+//creating instance
+//First Db name -> Username ->pass 
+//dialect define the db that we are going to connect
+//host is optional
+const sequelize = new Sequelize('node_scheme', 'root', 'QWERasdf!12345', {
   dialect: 'mysql',
   host: 'localhost'
 });

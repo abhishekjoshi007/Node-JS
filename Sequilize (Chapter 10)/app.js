@@ -22,6 +22,8 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
+//sync basically syncs your models to the db by creating appropriate tables
+//& if we have relations too & then we can listen to the result of this.
 sequelize.sync().then(result => {
     //console.log(result);
     app.listen(3000);

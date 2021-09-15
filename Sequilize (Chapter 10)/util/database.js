@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 //creating instance
 //First Db name -> Username ->pass 
-//dialect define the db that we are going to connect
+//dialect define the db that we are going to connect (Mysql, Mongodb etc)
 //host is optional
 const sequelize = new Sequelize('node_scheme', 'root', 'QWERasdf!12345', {
   dialect: 'mysql',

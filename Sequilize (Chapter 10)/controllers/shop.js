@@ -13,9 +13,9 @@ exports.getProducts = (req, res, next) => {
   //   .catch(err => console.log(err));
 
   Product.findAll()
-  .then(product => {
+  .then(products => {
     res.render('shop/product-list', {
-             prods: product,
+             prods: products,
              pageTitle: 'All Products',
              path: '/products'
            });
@@ -27,11 +27,34 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId)
-    .then(([product]) => {
+  // Product.findById(prodId)
+  //   .then(([product]) => {
+  //     res.render('shop/product-detail', {
+  //       product: product[0],
+  //       pageTitle: product.title,
+  //       path: '/products'
+  //     });
+  //   })
+  //   .catch(err => console.log(err));
+
+
+ //-------Method 1--------
+    // Product.findByPk(prodId)
+    // .then(product => {
+    //   res.render('shop/product-detail', {
+    //     product: product,
+    //     pageTitle: product.title,
+    //     path: '/products'
+    //   });
+    // })
+    // .catch(err => console.log(err));
+
+//-------Method 2 (Wher Clause)--------
+    Product.findAll({where :{id: prodId}})
+    .then(product => {
       res.render('shop/product-detail', {
         product: product[0],
-        pageTitle: product.title,
+        pageTitle: product[0].title,
         path: '/products'
       });
     })
@@ -50,9 +73,9 @@ exports.getIndex = (req, res, next) => {
   //   .catch(err => console.log(err));
 
   Product.findAll()
-  .then(product => {
+  .then(products => {
     res.render('shop/index', {
-             prods: product,
+             prods: products,
              pageTitle: 'Shop',
              path: '/'
            });

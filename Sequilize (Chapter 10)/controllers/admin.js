@@ -37,40 +37,57 @@ exports.postAddProduct = (req, res, next) => {
   })
 };
 
+//first load the product to get edited 
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   if (!editMode) {
     return res.redirect('/');
   }
   const prodId = req.params.productId;
-  Product.findById(prodId, product => {
-    if (!product) {
-      return res.redirect('/');
-    }
-    res.render('admin/edit-product', {
-      pageTitle: 'Edit Product',
-      path: '/admin/edit-product',
-      editing: editMode,
-      product: product
-    });
-  });
+  Product.findByPk(prodId)
+  .then(product => {
+      if (!product) {
+        return res.redirect('/');
+      }
+      res.render('admin/edit-product', {
+        pageTitle: 'Edit Product',
+        path: '/admin/edit-product',
+        editing: editMode,
+        product: product
+      });
+    })
+    .catch(err => console.log(err));
 };
 
+//gets called once we submit our edit
 exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
   const updatedImageUrl = req.body.imageUrl;
   const updatedDesc = req.body.description;
-  const updatedProduct = new Product(
-    prodId,
-    updatedTitle,
-    updatedImageUrl,
-    updatedDesc,
-    updatedPrice
-  );
-  updatedProduct.save();
-  res.redirect('/admin/products');
+
+  //we are using prod model
+  //first find the element in db that you want to change
+  Product.findByPk(prodId)
+  //this will not reflect the changes in db
+  //it will reflect changes in our local app
+  .then(product => {
+    product.title= updatedTitle;
+    product.price= updatedPrice;
+    product.description= updatedDesc;
+    product.imageUrl=updatedImageUrl
+    //to reflect changes in db we need to 
+  return product.save();
+  })
+  //to avoid nesting of promise we are adding then block here and returning save product above
+  .then(result => {
+    console.log("updated Product")
+    res.redirect('/admin/products');
+  }) 
+  //this  can cath error for both block
+  .catch(err => console.log(err));
+  
 };
 
 exports.getProducts = (req, res, next) => {

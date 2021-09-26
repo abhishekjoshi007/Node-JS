@@ -19,21 +19,45 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//registering a middleare because I want to store that user in my request so that I can use it from anywhere in my app conveniently.
+app.use((req,res,next) => {
+    User.findbyPK(1)
+    .then(user => {
+        req.user=user;
+        next();
+    })
+    .catch(err => console.log(err));
+})
+
+
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-//relaating model 
+//relating models
 Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Product);
 
 //sync basically syncs your models to the db by creating appropriate tables
 //& if we have relations too & then we can listen to the result of this.
-sequelize.sync({force:true}).then(result => {
-    //console.log(result);
-    app.listen(3000);
-}).catch(err => {
+sequelize.sync()
+.then(result => {
+    return User.findByPk(1);
+   })
+.then(user => {
+    if(!user)
+    {
+        return User.create({name:'Abhi' , email : 'xyz@gmail.com'});
+    }
+    return user;
+})
+.then(user => {
+    //
+    console.log(user);
+    app.listene(3000);
+})
+.catch(err => {
     console.log(err);
 }
 )

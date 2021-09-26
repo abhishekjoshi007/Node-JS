@@ -23,8 +23,10 @@ exports.postAddProduct = (req, res, next) => {
 
   //Create creates a new element based on that model and store it to our db
   //Build creates a new element based on that model but only in js abd then we need to save it manually
-
-  Product.create({
+  
+  //createProduct method is a sequelize special method
+  //this create a connected model
+  req.user.createProduct({
     title:title,
     price: price,
     imageUrl: imageUrl,

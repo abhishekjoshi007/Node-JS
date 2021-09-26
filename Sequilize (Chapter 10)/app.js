@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //registering a middleare because I want to store that user in my request so that I can use it from anywhere in my app conveniently.
 app.use((req,res,next) => {
-    User.findbyPK(1)
+    User.findByPk(1)
     .then(user => {
         req.user=user;
         next();
@@ -55,7 +55,7 @@ sequelize.sync()
 .then(user => {
     //
     console.log(user);
-    app.listene(3000);
+    app.listen(3000);
 })
 .catch(err => {
     console.log(err);

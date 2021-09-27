@@ -23,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req,res,next) => {
     User.findByPk(1)
     .then(user => {
+        //imp
         req.user=user;
         next();
     })

@@ -5,6 +5,7 @@ const bodyparser=require('body-parser');
 //importing routes (admin.js) 
 const adminRoutes=require('./Routes/admin')
 
+const rootDir=require('./util/path');
 //importing routes (shop.js) 
 const shopRoutes=require('./Routes/shop')
 

@@ -90,8 +90,10 @@ const getProductsFromFile = cb => {
   });
 };
 
-module.exports = class Product {
-  constructor(t) {
+module.exports = class Product 
+{
+    constructor(t) {
+      //finctional way of creating a obj
     this.title = t;
   }
 
@@ -114,4 +116,5 @@ module.exports = class Product {
   static fetchAll(cb) {
     getProductsFromFile(cb);
   }
+
 };

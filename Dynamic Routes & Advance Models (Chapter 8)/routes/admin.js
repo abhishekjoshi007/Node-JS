@@ -12,11 +12,13 @@ router.get('/add-product', adminController.getAddProduct);
 // /admin/products => GET
 router.get('/products', adminController.getProducts);
 
-// /admin/add-product => POST
+// /admin/add-product => POST 
 router.post('/add-product', adminController.postAddProduct);
 
+//to edit Product
 router.get('/edit-product/:productid', adminController.getEditProduct);
 
-//for Editing a product
+//for Editing product update button needs to update products
 router.post('/edit-product',adminController.postEditProduct);
+
 module.exports = router;

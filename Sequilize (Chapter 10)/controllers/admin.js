@@ -48,6 +48,7 @@ exports.getEditProduct = (req, res, next) => {
   }
   const prodId = req.params.productId;
   //finding prod for the currently logged in user
+  
   req.user.getProducts({Where : {id : prodId}})
   .then(products => {
     const product=products[0];

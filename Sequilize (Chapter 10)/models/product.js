@@ -1,3 +1,4 @@
+//importing sequelize
 const Sequelize = require('sequelize');
 //importing Db connection
 const sequelize = require('../util/database');

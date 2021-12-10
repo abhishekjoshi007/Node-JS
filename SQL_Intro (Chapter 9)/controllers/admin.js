@@ -58,6 +58,7 @@ exports.postEditProduct = (req, res, next) => {
   res.redirect('/admin/products');
 };
 
+//for admin products (Admin page)
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {
     res.render('admin/products', {

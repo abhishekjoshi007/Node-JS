@@ -19,7 +19,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-const { FORCE } = require('sequelize/types/lib/index-hints');
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -29,6 +29,7 @@ app.use((req,res,next) => {
     User.findByPk(1)
     .then(user => {
         //imp
+        //sequelize obj is stored here not js obj.
         req.user=user;
         next();
     })
@@ -42,8 +43,12 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 //relating models
+
+//1st arg define the relation ,2nd arg define how relation is managed 
+//cascade means if we del a user the deletion will be their in his products as well
 Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Product);
+
 User.hasOne(Cart);
 Cart.belongsTo(User);
 Cart.belongsToMany(Product, {through: CartItem});
@@ -52,11 +57,17 @@ Product.belongsToMany(Cart, {through: CartItem});
 
 //sync basically syncs your models to the db by creating appropriate tables
 //& if we have relations too & then we can listen to the result of this.
-sequelize.sync({force: true})
+
+//sequelize.sync({force: true}) means it will overwrite the info in db
+sequelize
+//.sync({force:true})
+.sync()
 .then(result => {
+    //finding a dummy user
     return User.findByPk(1);
    })
 .then(user => {
+    //if we dont get any user then we will create one
     if(!user)
     {
         return User.create({name:'Abhi' , email : 'xyz@gmail.com'});
@@ -64,13 +75,15 @@ sequelize.sync({force: true})
     return user;
 })
 .then(user => {
-    //
-    console.log(user);
+    return user.createCart();
+    // console.log(user);
+    // app.listen(3000);
+})
+.then(cart => {
     app.listen(3000);
 })
 .catch(err => {
     console.log(err);
-}
-)
+});
 
 

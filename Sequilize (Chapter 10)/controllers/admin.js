@@ -24,18 +24,21 @@ exports.postAddProduct = (req, res, next) => {
   //Create creates a new element based on that model and store it to our db
   //Build creates a new element based on that model but only in js abd then we need to save it manually
   
-  //createProduct method is a sequelize special method
+  //create is a sequelize special method
+  //Product is our Model name
   //this create a connected model
   req.user.createProduct({
     title:title,
     price: price,
     imageUrl: imageUrl,
     description: description
-  }).then(result => {
+  })
+  .then(result => {
     //console.log(result);
     console.log('Product Created');
     res.redirect('/admin/products');
-  } ).catch(err => {
+  })
+  .catch(err => {
     console.log(err);
   })
 };
@@ -47,9 +50,11 @@ exports.getEditProduct = (req, res, next) => {
     return res.redirect('/');
   }
   const prodId = req.params.productId;
+
   //finding prod for the currently logged in user
   req.user.getProducts({Where : {id : prodId}})
   .then(products => {
+    
     const product=products[0];
       if (!product) {
         return res.redirect('/');
@@ -96,7 +101,8 @@ exports.postEditProduct = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
- req.user.getProducts().then(products => {
+ req.user.getProducts()
+ .then(products => {
     res.render('admin/products', {
       prods: products,
       pageTitle: 'Admin Products',

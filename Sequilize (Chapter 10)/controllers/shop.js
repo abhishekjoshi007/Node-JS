@@ -129,11 +129,39 @@ exports.getCart = (req, res, next) => {
 
 exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
+  let fetchedCart;
   req.user
   .getCart()
   .then(cart => {
-    
+    fetchedCart=cart;
+    //getting a cart product and checking with the product that we are adding
+    return cart.getProducts({where: {id:prodId}});
   })
+
+  .then(products => {
+    let product;
+    if (products.length > 0)
+    {
+      prouct= products[0];
+    }
+    let newQuantity=1;
+
+    if(product)
+    {
+      //if we have product already in the cart
+    }
+    // for new product
+    return Product.findByPk(prodId)
+    .then(product => {
+      //.addproduct is the special method by sequelize
+     return fetchedCart.addProduct(product, { through : {quantity : newQuantity} })
+    })
+    .catch(err => console.log(err));
+  })
+  .then(() => {
+    res.redirect('/cart');
+  })
+  
   .catch(err => console.log(err));
   
   // Product.findById(prodId, product => {

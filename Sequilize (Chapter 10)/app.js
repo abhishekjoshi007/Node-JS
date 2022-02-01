@@ -70,8 +70,10 @@ sequelize
     //if we dont get any user then we will create one
     if(!user)
     {
-        return User.create({name:'Abhi' , email : 'xyz@gmail.com'});
+        //here returning promise
+        User.create({name:'Abhi' , email : 'xyz@gmail.com'});
     }
+    //here returning obj
     return user;
 })
 .then(user => {
@@ -85,5 +87,6 @@ sequelize
 .catch(err => {
     console.log(err);
 });
+
 
 

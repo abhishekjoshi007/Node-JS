@@ -14,7 +14,7 @@ exports.getProducts = (req, res, next) => {
 
 exports.getProduct = (req, res, next) => {
   const prodId = req.params.productId;
-  Product.findById(prodId)
+  Product.findBypk(prodId)
   .then(([product]) => {
     //we have used product:product[0] 
     //and the reason is that product still is an array, an array with one element only but still an array

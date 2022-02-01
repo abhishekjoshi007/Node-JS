@@ -18,6 +18,7 @@ router.get('/products/:productid', shopController.getProduct);
 
 router.get('/cart', shopController.getCart);
 
+//to add product to cart
 router.post('/cart', shopController.postCart);
 
 router.get('/orders', shopController.getOrders);

@@ -40,7 +40,7 @@ module.exports=class Cart{
              //fetching previous product
              cart.products=[...cart.products];
              //not adding , replacing the products
-             cart.products[existingProductIndex]=updatedProducts;
+             cart.products[existingProductIndex]=updatedProduct;
             }
             else 
             {
